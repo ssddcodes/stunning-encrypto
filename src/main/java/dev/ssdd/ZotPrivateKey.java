@@ -6,29 +6,28 @@ import java.security.SecureRandom;
 
 public class ZotPrivateKey {
 
-    BigInteger p, //prime no p
-            q, //prime no q
-            n, // p*q
-            pm1, // p-1
-            qm1, // q-1
-            on, // O(n)
-            e, // e
-            d // d
+    private final BigInteger on; // O(n)
+    private final BigInteger d // d
     ;
     public ZotPrivateKey(int bitLen, int nx, ZotKeyPair zotKeyPair, Encrypto encrypto) {
         SecureRandom secureRandom = new SecureRandom();
-        p = new BigInteger(bitLen, nx, secureRandom);
-        q=new BigInteger(bitLen, nx, secureRandom);
-        n= p.multiply(q);
-        pm1 = p.subtract(BigInteger.ONE);
-        qm1 = q.subtract(BigInteger.ONE);
+        BigInteger p = new BigInteger(bitLen, nx, secureRandom);//prime no p
+        BigInteger q = new BigInteger(bitLen, nx, secureRandom);//prime no q
+
+        // p*q
+        BigInteger n = p.multiply(q);
+        // p-1
+        BigInteger pm1 = p.subtract(BigInteger.ONE);
+        // q-1
+        BigInteger qm1 = q.subtract(BigInteger.ONE);
         on = pm1.multiply(qm1);
-        e = new BigInteger(bitLen, nx, new SecureRandom());
+        // e
+        BigInteger e = new BigInteger(bitLen, nx, new SecureRandom());
         d = e.modInverse(pm1.multiply(qm1));
 
         try{
             assertEquals(e.multiply(d).mod(on));
-            zotKeyPair.publicKey = new ZotPublicKey(e,n);
+            zotKeyPair.publicKey = new ZotPublicKey(e, n);
             encrypto.keyPair = zotKeyPair;
         }catch (AssertionError er){
             er.printStackTrace();
@@ -39,12 +38,12 @@ public class ZotPrivateKey {
         if (!BigInteger.ONE.equals(mod)) throw new AssertionError("defect in generating keys.");
     }
 
+    public String decrypt(byte[] decode) {
+        return new String((new BigInteger(decode).multiply(d)).mod(on).toByteArray(), StandardCharsets.UTF_8);
+    }
+
     @Override
     public String toString() {
         return "Algo: RSA\n" + "modulus: "+on + "\nprivate exponent: "+d;
-    }
-
-    public String decrypt(byte[] decode) {
-        return new String((new BigInteger(decode).multiply(d)).mod(on).toByteArray(), StandardCharsets.UTF_8);
     }
 }

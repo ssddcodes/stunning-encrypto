@@ -21,12 +21,12 @@ public class ZotPublicKey {
         return encoder.encodeToString(jsonObject.toString().getBytes());
     }
 
+    public String encrypt(byte[] val) {
+        return Base64.getEncoder().encodeToString((new BigInteger(val).multiply(e)).mod(on).toByteArray());
+    }
+
     @Override
     public String toString() {
         return "Algo: RSA\n" + "modulus: "+on + "\npublic exponent: "+e;
-    }
-
-    public String encrypt(byte[] val) {
-        return Base64.getEncoder().encodeToString((new BigInteger(val).multiply(e)).mod(on).toByteArray());
     }
 }

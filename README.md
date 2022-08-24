@@ -72,7 +72,7 @@ String decrypted = encrypto.decrypt(base64DESencrypted);
 
 ## Preview
 
-![](https://github.com/ssddcodes/stunning-encryptio/img.png "Test Screenshot")
+![](img.png "Test Screenshot")
 
 ## License
 

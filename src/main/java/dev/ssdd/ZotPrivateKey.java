@@ -23,7 +23,7 @@ public class ZotPrivateKey {
         on = pm1.multiply(qm1);
         // e
         BigInteger e = new BigInteger(bitLen, nx, new SecureRandom());
-        d = e.modInverse(pm1.multiply(qm1));
+        d = e.modInverse(pm1.multiply(qm1)); //d*e mod O(n)
 
         try{
             assertEquals(e.multiply(d).mod(on));

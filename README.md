@@ -76,4 +76,4 @@ String decrypted = encrypto.decrypt(base64DESencrypted);
 
 ## License
 
-[![](LICENSE.md)](https://github.com/ssddcodes/stunning-encryptio/blob/encrypto/LICENSE.md)
+### Click [here](https://github.com/ssddcodes/stunning-encryptio/blob/encrypto/LICENSE.md)

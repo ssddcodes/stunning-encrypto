@@ -1,6 +1,6 @@
 name: encrypto_flutter
 description: End to End encryption (RSA e2ee) for multiple languages (cross platform) and Value password protection (DES encryption) specially for local file encryption!
-version: 1.0.6
+version: 1.1.0
 homepage: https://zot.ssdd.dev/encrypto
 
 environment:

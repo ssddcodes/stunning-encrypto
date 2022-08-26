@@ -40,9 +40,10 @@ class Encrypto {
   }
 
   /// used to convert the client's public key to the ZotPublicKey class instance.
-  ZotPublicKey desterilizePublicKey(String base64PublicKey) {
+  static ZotPublicKey desterilizePublicKey(String base64PublicKey) {
     var obj = jsonDecode(
         String.fromCharCodes(const Base64Decoder().convert(base64PublicKey)));
+    print(obj['pe'].toString());
     return ZotPublicKey(
         BigInt.parse(obj['pe'].toString()), BigInt.parse(obj['on'].toString()));
   }

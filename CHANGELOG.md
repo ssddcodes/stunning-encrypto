@@ -27,3 +27,9 @@
 
 * Minor bug fix
 * added more docs
+
+## 1.1.0
+
+* Major bug fixes
+* Improved documentation and example
+* 

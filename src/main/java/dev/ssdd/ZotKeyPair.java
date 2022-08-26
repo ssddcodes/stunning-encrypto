@@ -1,22 +1,20 @@
 package dev.ssdd;
 
-import com.sun.istack.internal.Nullable;
-
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Base64;
 
-public class ZotKeyPair extends EncryptoSpi {
+public class ZotKeyPair implements EncryptoSpi {
     private final ZotPrivateKey privateKey;
 
-    @Nullable ZotPublicKey publicKey;
+    ZotPublicKey publicKey;
 
     public ZotKeyPair(int bitLen, Encrypto encrypto) {
-        int nx = new SecureRandom().nextInt(9999);
-        privateKey = new ZotPrivateKey(bitLen, nx, this, encrypto);
+        privateKey = new ZotPrivateKey(bitLen, new SecureRandom().nextInt(9999), this, encrypto);
     }
 
     @Override
-    protected String encrypt(String val, ZotPublicKey publicKey) {
+    public String encrypt(String val, ZotPublicKey publicKey) {
         if(publicKey == null){
             throw new RuntimeException("ZotPublicKey can't be null for RSA encryption");
         }
@@ -24,17 +22,17 @@ public class ZotKeyPair extends EncryptoSpi {
     }
 
     @Override
-    protected String decrypt(String val) {
+    public String decrypt(String val) {
         return privateKey.decrypt(Base64.getDecoder().decode(val.getBytes()));
     }
 
     @Override
-    protected String getPublicKeyString() {
+    public String getPublicKeyString() {
         return publicKey.toString();
     }
 
     @Override
-    protected String getPrivateKeyString() {
+    public String getPrivateKeyString() {
         return privateKey.toString();
     }
 

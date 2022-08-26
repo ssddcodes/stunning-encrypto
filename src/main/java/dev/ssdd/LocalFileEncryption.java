@@ -10,7 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Base64;
 
-public class LocalFileEncryption extends EncryptoSpi {
+public class LocalFileEncryption implements EncryptoSpi {
     private final SecretKey secretKey;
     private final AlgorithmParameterSpec aps;
 
@@ -22,7 +22,9 @@ public class LocalFileEncryption extends EncryptoSpi {
     }
 
     @Override
-    protected String encrypt(String val, ZotPublicKey publicKey) {
+    public String encrypt(String val, ZotPublicKey publicKey) {
+        if(val.equals(""))
+            return "";
         try {
             Cipher encrypt = Cipher.getInstance("DES/CBC/PKCS5Padding");
             encrypt.init(Cipher.ENCRYPT_MODE, secretKey, aps);
@@ -33,7 +35,9 @@ public class LocalFileEncryption extends EncryptoSpi {
     }
 
     @Override
-    protected String decrypt(String val) {
+    public String decrypt(String val) {
+        if(val.equals(""))
+            return "";
         try {
             Cipher decrypt = Cipher.getInstance("DES/CBC/PKCS5Padding");
             decrypt.init(Cipher.DECRYPT_MODE, secretKey, aps);
@@ -48,7 +52,7 @@ public class LocalFileEncryption extends EncryptoSpi {
      * this always returns "null" as a string to avoid errors.
      * */
     @Override
-    protected String getPublicKeyString() {
+    public String getPublicKeyString() {
         return "null";
     }
 
@@ -57,7 +61,7 @@ public class LocalFileEncryption extends EncryptoSpi {
      * */
 
     @Override
-    protected String getPrivateKeyString() {
+    public String getPrivateKeyString() {
         return "null";
     }
 

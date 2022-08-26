@@ -2,12 +2,29 @@
 End to End encryption (RSA e2ee) for multiple languages (cross-platform) and Value password protection (DES encryption) specially for local file encryption! 
 
 
-| Icon |           Item            |
-|:----:|:-------------------------:|
-|  📺  |  [**Preview**](#Preview)  |
-|  ⚖️  |  [**License**](#License)  |
+| Icon |             Item              |
+|:----:|:-----------------------------:|
+|  📺  |    [**Preview**](#Preview)    |
+|  🥳  |   [**Upcoming**](#Upcoming)   |
+|  ⚖️  |    [**License**](#License)    |
+|  📝  | [**ChangeLog**](CHANGELOG.md) |
 
 # Usage (java)
+
+## Implementation
+### Maven
+```xml
+<dependency>
+  <groupId>dev.ssdd</groupId>
+  <artifactId>encrypto</artifactId>
+  <version>1.1.0</version>
+</dependency>
+```
+
+### Gradle
+```java
+implementation 'dev.ssdd.encrypto:1.1.0'
+```
 
 ## RSA
 
@@ -36,16 +53,16 @@ System.out.println(decrypted);
 
 ### Other methods for RSA
 
-| Sr. number |                                                              Methods                                                              |                                                                                                                                                                                                                                                                                                                                                       Info |
-|------------|:---------------------------------------------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| 1          |                                                  Encrypto.class / getPublicKey()                                                  |                                                                                                                                                                                                 is a method that returns generated [ZotPublicKey](!https://github.com/ssddcodes/stunning-encryptio/blob/encrypto/src/main/java/dev/ssdd/ZotPublicKey.java) |
-| 2          |                                              Encrypto.class / desterilizePublicKey()                                              |                                                                                                                                                                           is a static method which converts ZotPublicKey string to [ZotPublicKey](!https://github.com/ssddcodes/stunning-encryptio/blob/encrypto/src/main/java/dev/ssdd/ZotPublicKey.java) |
-| 3          |                                               Encrypto.class / sterilizePublicKey()                                               |                                                                                                                                                                                                                                                                                       returns a ZotPublicKey string which can be sent to the other person. |
-| 4          |                                  Encrypto.class / getPrivateKeyString() and getPublicKeyString()                                  |                                                                                                                                                                                                                                                                                              returns plain text of private/public key exponent and modulus |
-| 5          |                                  Encrypto.class / encrypt(String value, ZotPublicKey publicKey)                                   |                                                                                                                                                                                                                                                                                                                            used to encrypt String with RSA |
-| 6          |                                       Encrypto.class / public String decrypt(String value)                                        | used to decrypt string using the password or [ZotPrivateKey](!https://github.com/ssddcodes/stunning-encryptio/blob/encrypto/src/main/java/dev/ssdd/ZotPrivateKey.java) (no need to pass [ZotPrivateKey](!https://github.com/ssddcodes/stunning-encryptio/blob/encrypto/src/main/java/dev/ssdd/ZotPrivateKey.java) or Password as parameter for decryption) |
-| 7          |                   ZotPublicKey.class / public String sterilizePublicKey() and public String encrypt(byte[] val)                   |                                                                                                                                                                                                                                                                                                                       same as no. 3 and no. 5 of the table |
-| 8          |                                    ZotPrivateKey.class / public String decrypt(byte[] decode)                                     |                                                                                                                                                                                                                                                                                                                                 same as no. 7 of the table |
+| Sr. number |                                            Methods                                            |                                                                                                                                                                                                                                                                                                                                                       Info |
+|------------|:---------------------------------------------------------------------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| 1          |                                Encrypto.class / getPublicKey()                                |                                                                                                                                                                                                 is a method that returns generated [ZotPublicKey](!https://github.com/ssddcodes/stunning-encryptio/blob/encrypto/src/main/java/dev/ssdd/ZotPublicKey.java) |
+| 2          |                          Encrypto.class / getDeSterilizePublicKey()                           |                                                                                                                                                                           is a static method which converts ZotPublicKey string to [ZotPublicKey](!https://github.com/ssddcodes/stunning-encryptio/blob/encrypto/src/main/java/dev/ssdd/ZotPublicKey.java) |
+| 3          |                           Encrypto.class / getSterilizePublicKey()                            |                                                                                                                                                                                                                                                                                       returns a ZotPublicKey string which can be sent to the other person. |
+| 4          |                Encrypto.class / getPrivateKeyString() and getPublicKeyString()                |                                                                                                                                                                                                                                                                                              returns plain text of private/public key exponent and modulus |
+| 5          |                Encrypto.class / encrypt(String value, ZotPublicKey publicKey)                 |                                                                                                                                                                                                                                                                                                                            used to encrypt String with RSA |
+| 6          |                     Encrypto.class / public String decrypt(String value)                      | used to decrypt string using the password or [ZotPrivateKey](!https://github.com/ssddcodes/stunning-encryptio/blob/encrypto/src/main/java/dev/ssdd/ZotPrivateKey.java) (no need to pass [ZotPrivateKey](!https://github.com/ssddcodes/stunning-encryptio/blob/encrypto/src/main/java/dev/ssdd/ZotPrivateKey.java) or Password as parameter for decryption) |
+| 7          | ZotPublicKey.class / public String sterilizePublicKey() and public String encrypt(byte[] val) |                                                                                                                                                                                                                                                                                                                       same as no. 3 and no. 5 of the table |
+| 8          |                  ZotPrivateKey.class / public String decrypt(byte[] decode)                   |                                                                                                                                                                                                                                                                                                                                 same as no. 7 of the table |
 
 ## DES
 
@@ -69,6 +86,14 @@ String base64DESencrypted = encrypto.encrypt("alo");
 String decrypted = encrypto.decrypt(base64DESencrypted);
 //you get back the text 
 ```
+
+## Upcoming
+
+| Supported Languages | Status                                                                                                    |
+|---------------------|-----------------------------------------------------------------------------------------------------------|
+| Flutter             | Completed and available [here](https://github.com/ssddcodes/stunning-encrypto/edit/encrypto/tree/flutter) |
+| Rust                | Pending                                                                                                   |
+| JavaScript          | Pending                                                                                                   |
 
 ## Preview
 

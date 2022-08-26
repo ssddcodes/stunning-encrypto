@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 
+import static dev.ssdd.BigIntPlayground.*;
+
 public class ZotPrivateKey {
 
     private final BigInteger on; // O(n)
@@ -23,7 +25,7 @@ public class ZotPrivateKey {
         on = pm1.multiply(qm1);
         // e
         BigInteger e = new BigInteger(bitLen, nx, new SecureRandom());
-        d = e.modInverse(pm1.multiply(qm1)); //d*e mod O(n)
+        d = e.modInverse(on); //d*e mod O(n)
 
         try{
             assertEquals(e.multiply(d).mod(on));
@@ -39,7 +41,7 @@ public class ZotPrivateKey {
     }
 
     public String decrypt(byte[] decode) {
-        return new String((new BigInteger(decode).multiply(d)).mod(on).toByteArray(), StandardCharsets.UTF_8);
+        return new String(writeBigInt((convertBytesToBigInt(decode).multiply(d)).mod(on)), StandardCharsets.UTF_8);
     }
 
     @Override

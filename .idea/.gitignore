@@ -7,4 +7,4 @@
 /dataSources/
 /dataSources.local.xml
 
-../src/test/java/ain1.java
+../target

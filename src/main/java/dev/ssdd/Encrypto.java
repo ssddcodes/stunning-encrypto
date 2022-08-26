@@ -19,7 +19,7 @@ public class Encrypto {
      * @param algo "RSA" and "DES" are only supported currently.
      * */
 
-    public Encrypto(String algo) {
+        public Encrypto(String algo) {
         this.bitLength = 1024;
         this.algo = algo;
         init();
@@ -52,13 +52,13 @@ public class Encrypto {
      * */
     private void init() {
         String link = "https://github.com/ssddcodes/encrypto/";
-        if(algo.equalsIgnoreCase("DES")){
+        if(algo.equalsIgnoreCase(Encrypto.DES)){
             //TODO
             if(pw == null || pw.length()<8){
                 throw new RuntimeException("Password can't be null or less then 8 characters long for DES encryption. Please pass the password as 2nd argument. Please refer: "+ link);
             }
             ei = new LocalFileEncryption(pw);
-        }else if(algo.equalsIgnoreCase("RSA")){
+        }else if(algo.equalsIgnoreCase(Encrypto.RSA)){
             ei = new ZotKeyPair(bitLength, Encrypto.this);
         }else {
             //TODO
@@ -78,9 +78,10 @@ public class Encrypto {
      * used to convert the client's public key to the ZotPublicKey class instance.
      * */
 
-    public static ZotPublicKey desterilizePublicKey(String base64PublicKey){
+    public static ZotPublicKey getPublicKey(String base64PublicKey){
         Base64.Decoder decoder = Base64.getDecoder();
         JSONObject jsonObject = new JSONObject(new String(decoder.decode(base64PublicKey)));
+        System.out.println(jsonObject);
         return new ZotPublicKey(jsonObject.getBigInteger("pe"), jsonObject.getBigInteger("on"));
     }
 
@@ -88,7 +89,7 @@ public class Encrypto {
      * returns sterilized public key to be sent to the client.
      * */
 
-    public String sterilizePublicKey(){
+    public String getSterilizedPublicKey(){
         String returnPublicKeyB64 = keyPair.publicKey.sterilizePublicKey();
         if(returnPublicKeyB64==null){
             return "null";
@@ -129,7 +130,7 @@ public class Encrypto {
     }
 
     /**
-     * encrypt the message for local storage.
+     * encrypt the message with password.
      * */
 
     public String encrypt(String value){

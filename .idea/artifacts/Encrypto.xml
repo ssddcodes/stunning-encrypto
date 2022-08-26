@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Encrypto">
+    <output-path>$PROJECT_DIR$/out/artifacts/Encrypto</output-path>
+    <root id="root">
+      <element id="archive" name="Encrypto.jar">
+        <element id="module-output" name="Encrypto" />
+      </element>
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
+    </root>
+  </artifact>
+</component>

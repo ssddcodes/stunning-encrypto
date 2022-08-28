@@ -17,13 +17,13 @@ End to End encryption (RSA e2ee) for multiple languages (cross-platform) and Val
 <dependency>
   <groupId>dev.ssdd</groupId>
   <artifactId>encrypto</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.1</version>
 </dependency>
 ```
 
 ### Gradle
 ```java
-implementation 'dev.ssdd.encrypto:1.1.0'
+implementation 'dev.ssdd.encrypto:1.2.1'
 ```
 
 ## RSA

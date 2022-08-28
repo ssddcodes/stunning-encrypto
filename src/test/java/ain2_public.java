@@ -2,9 +2,6 @@ import dev.ssdd.Encrypto;
 import org.junit.Test;
 
 import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.Base64;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,14 +15,11 @@ public class ain2_public {
         System.out.printf("Original value: %s\nEncryptedValue: %s\nDecryptedValue: %s", val, base64DESEncrypted, encrypto.decrypt(base64DESEncrypted));
 
 //        RSA
-
-        System.out.println(Arrays.toString(new BigInteger("val".getBytes()).toByteArray()));
-
         Encrypto encrypto1 = new Encrypto(Encrypto.RSA, 128);
-        System.out.println(encrypto1.getPrivateKeyString());
         String val1 = "abx";
-        String base64RSAEncrypted = encrypto1.encrypt(val1, Encrypto.getPublicKey(encrypto1.getSterilizedPublicKey()));
+        String base64RSAEncrypted = encrypto1.encrypt(val1, Encrypto.getPublicKey("eyJwZSI6IjE5NzA4NDM1NjcxNzIwNDg2MDU4ODU0MDQzNjQyMjcwMDAwODQwNyIsIm9uIjoiNjU1Mjg0NDgzMzAzNzU3MjQ4ODMwMzk1NjI2NDcyNTUyOTE2MTkzMzUzMzQyMTkxNDQ0OTU1MDA1OTM2MjM1Mzg3MDcwNTM2NDg5NDQifQ=="));
         System.out.printf("\n\nOriginal value: %s\nEncryptedValue: %s\nDecryptedValue: %s", val1, base64RSAEncrypted, encrypto1.decrypt(base64RSAEncrypted));
+
     }
     @Test
     public void time1() {

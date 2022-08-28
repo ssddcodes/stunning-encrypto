@@ -3,10 +3,9 @@ package dev.ssdd;
 import dev.ssdd.zot.JSONObject;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.Base64;
 
-import static dev.ssdd.BigIntPlayground.*;
+import static dev.ssdd.BigIntPlayground.convertBytesToBigInt;
 
 public class ZotPublicKey {
 
@@ -25,7 +24,7 @@ public class ZotPublicKey {
     }
 
     public String encrypt(byte[] val) {
-        return Base64.getEncoder().encodeToString(writeBigInt((convertBytesToBigInt(val).multiply(e)).mod(on)));
+        return Base64.getEncoder().encodeToString((convertBytesToBigInt(val).multiply(e)).mod(on).toString().getBytes());
     }
 
     @Override

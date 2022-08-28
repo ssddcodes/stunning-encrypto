@@ -41,7 +41,7 @@ public class ZotPrivateKey {
     }
 
     public String decrypt(byte[] decode) {
-        return new String(writeBigInt((convertBytesToBigInt(decode).multiply(d)).mod(on)), StandardCharsets.UTF_8);
+        return new String(writeBigInt((new BigInteger(new String(decode)).multiply(d)).mod(on)), StandardCharsets.UTF_8);
     }
 
     @Override

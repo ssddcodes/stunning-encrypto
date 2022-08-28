@@ -1,7 +1,6 @@
 package dev.ssdd;
 
 import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.Base64;
 
 public class ZotKeyPair implements EncryptoSpi {
@@ -10,7 +9,7 @@ public class ZotKeyPair implements EncryptoSpi {
     ZotPublicKey publicKey;
 
     public ZotKeyPair(int bitLen, Encrypto encrypto) {
-        privateKey = new ZotPrivateKey(bitLen, new SecureRandom().nextInt(9999), this, encrypto);
+            privateKey = new ZotPrivateKey(bitLen, new SecureRandom().nextInt(9999), this, encrypto);
     }
 
     @Override

@@ -93,7 +93,7 @@ String decrypted = encrypto.decrypt(base64DESencrypted);
 |---------------------|-----------------------------------------------------------------------------------------------------------|
 | Flutter             | Completed and available [here](https://github.com/ssddcodes/stunning-encrypto/edit/encrypto/tree/flutter) |
 | Rust                | Pending                                                                                                   |
-| JavaScript          | Pending                                                                                                   |
+| JavaScript          | Completed and available [here](https://github.com/ssddcodes/stunning-encrypto/tree/js)                    |
 
 ## Preview
 

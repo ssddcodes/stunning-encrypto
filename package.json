@@ -1,0 +1,33 @@
+{
+  "name": "@zozoto/encrypto",
+  "version": "1.0.3",
+  "description": "End to End encryption (RSA e2ee) for multiple languages (cross platform) and Value password protection (DES encryption) specially for local file encryption! ",
+  "main": "encrypto.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssddcodes/stunning-encrypto.git"
+  },
+  "keywords": [
+    "e2ee",
+    "encrypto",
+    "RSA",
+    "Encrypton",
+    "end",
+    "to",
+    "end",
+    "encryption",
+    "Zot",
+    "SSDD",
+    "DES",
+    "encryption"
+  ],
+  "author": "Sandip",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ssddcodes/stunning-encrypto/issues"
+  },
+  "homepage": "https://zot.ssdd.dev/encrypto"
+}

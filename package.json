@@ -1,6 +1,6 @@
 {
   "name": "@zozoto/encrypto",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "End to End encryption (RSA e2ee) for multiple languages (cross platform) and Value password protection (DES encryption) specially for local file encryption! ",
   "main": "encrypto.js",
   "scripts": {

@@ -2,15 +2,16 @@
 End to End encryption (RSA e2ee) for multiple languages (cross-platform) and Value password protection (DES encryption) specially for local file encryption!
 
 
-| Icon |             Item              |
-|:----:|:-----------------------------:|
-|  📺  |    [**Preview**](#Preview)    |
-|  🥳  |   [**Upcoming**](#Upcoming)   |
-|  ⚖️  |    [**License**](#License)    |
-|  📝  | [**ChangeLog**](CHANGELOG.md) |
-|  😋  |     [**For HTML**](#HTML)     |
+| Icon |                                         Item                                         |
+|:----:|:------------------------------------------------------------------------------------:|
+|  🎃  |                           [**Usage**](#Usage(JavaScript))                            |
+|  📺  |                               [**Preview**](#Preview)                                |
+|  🥳  |                              [**Upcoming**](#Upcoming)                               |
+|  ⚖️  |                               [**License**](#License)                                |
+|  📝  | [**ChangeLog**](https://github.com/ssddcodes/stunning-encrypto/blob/js/CHANGELOG.md) |
+|  😋  |                                [**For HTML**](#HTML)                                 |
 
-# Usage (JavaScript)
+# Usage(JavaScript)
 
 ## Implementation:-
 ```npm i @zozoto/encrypto```
@@ -78,12 +79,13 @@ Encrypto encrypto = new Encrypto(Encrypto.DES, "the moon is scary sometimes");
 
 ### DES Encrypt
 
-* Currently unsupported for Encrypto v1.*
+* Unsupported for Encrypto v1.*
 
 ## HTML
 
-* **To use Encrypto in HTML script tag click [here](!https://github.com/ssddcodes/stunning-encrypto/tree/js/encrypto.min.js) for CDN link**
-* To import file directly (without npm) just copy the ```encrypto.js``` file from [here](!https://github.com/ssddcodes/stunning-encrypto/tree/js/encrypto.min.js) and use it the folloring way:
+* **To use Encrypto in HTML script tag click [here](https://cdn.ssdd.dev/encrypto.min.js) for ```encrypto.min.js``` CDN link**
+* **To use Encrypto in HTML script tag click [here](https://cdn.ssdd.dev/encrypto.js) for ```encrypto.js``` CDN link**
+* To import file directly (without npm) just copy the ```encrypto.js``` file from [here](https://github.com/ssddcodes/stunning-encrypto/tree/js/encrypto.min.js) and use it the folloring way:
 
 ```js
 //foo.js (foo = name of the file you use in your html code)

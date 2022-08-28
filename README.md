@@ -85,7 +85,7 @@ Encrypto encrypto = new Encrypto(Encrypto.DES, "the moon is scary sometimes");
 
 * **To use Encrypto in HTML script tag click [here](https://cdn.ssdd.dev/encrypto.min.js) for ```encrypto.min.js``` CDN link**
 * **To use Encrypto in HTML script tag click [here](https://cdn.ssdd.dev/encrypto.js) for ```encrypto.js``` CDN link**
-* To import file directly (without npm) just copy the ```encrypto.js``` file from [here](https://github.com/ssddcodes/stunning-encrypto/tree/js/encrypto.min.js) and use it the folloring way:
+* To import file directly (without npm) just copy the ```encrypto.js``` file from [here](https://github.com/ssddcodes/stunning-encrypto/blob/js/encrypto.js) and use it the folloring way:
 
 ```js
 //foo.js (foo = name of the file you use in your html code)

@@ -22,7 +22,7 @@ class ZotPrivateKey {
   /// returns decrypted message
   String decrypt(String val) {
     return String.fromCharCodes(ZotPublicKey.writeBigInt(
-        (ZotPublicKey.readBytes(const Base64Decoder().convert(val)) * _d) %
+        (BigInt.parse(String.fromCharCodes(const Base64Decoder().convert(val))) * _d) %
             _on));
   }
 

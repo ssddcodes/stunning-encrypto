@@ -32,4 +32,7 @@
 
 * Major bug fixes
 * Improved documentation and example
-* 
+
+## 1.2.0
+
+* Major bug fixe

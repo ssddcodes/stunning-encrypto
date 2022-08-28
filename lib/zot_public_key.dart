@@ -19,8 +19,7 @@ class ZotPublicKey {
   /// returns encrypted message
   String encrypt(String val) {
     List<int> bytes = const Utf8Encoder().convert(val);
-    return const Base64Encoder().convert(
-        writeBigInt(((readBytes(Uint8List.fromList(bytes)) * e) % on)));
+    return const Base64Encoder().convert(const Utf8Encoder().convert(((readBytes(Uint8List.fromList(bytes)) * e) % on).toString()));
   }
 
   /// returns info about public key: the information contains:

@@ -1,0 +1,16 @@
+[package]
+name = "encrypto_rust"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+#rsa = "0.6.1"
+rand = "0.8"
+num-traits = "0.2.11"
+num = { version = "0.4.0", default-features = false }
+num-integer = "0.1"
+num-bigint = { version = "0.4", features = ["rand"] }
+base64 = "0.13.0"
+log = "0.4.14"

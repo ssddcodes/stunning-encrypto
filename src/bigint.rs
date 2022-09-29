@@ -1,7 +1,5 @@
-#![no_std]
 #![forbid(unsafe_code)]
 
-extern crate num;
 extern crate rand;
 extern crate num_bigint as bigint;
 
@@ -12,10 +10,6 @@ use num::Integer;
 pub use bigint::{BigUint,RandBigInt};
 use num_traits::{Zero, One};
 use num_traits::*;
-
-use log::debug;
-use log::error;
-use log::info;
 
 // Settings
 // NIST recomends 5 rounds for miller rabin. This implementation does 8. Apple uses 16. Three iterations has a probability of 2^80 of failing
@@ -28,18 +22,18 @@ const MILLER_RABIN_ROUNDS: usize = 8usize;
 /// - Composite Numbers
 /// - Prime Numbers
 /// - Safe Primes
-/// 
+///
 /// ```
-/// 
+///
 /// use num_primes::{Generator,Verification};
-/// 
+///
 /// fn main(){
 ///     let prime = Generator::new_prime(512);
 ///     let _uint = Generator::new_uint(1024);
-/// 
+///
 ///     // p = 2q + 1 || where p is safe prime
 ///     let _safe_prime = Generator::safe_prime(64);
-/// 
+///
 ///     let _ver: bool = Verification::is_prime(&prime);
 /// }
 /// ```
@@ -99,7 +93,7 @@ impl Generator {
         let mut rng = rand::thread_rng();
         loop {
             // Make mutable and set LSB and MSB
-            let candidate: BigUint = rng.gen_biguint(n);
+            let candidate: BigUint = rng.gen_biguint(n as u64);
             //candidate.set_bit(0, true);
             //candidate.set_bit((n-1) as u32, true);
             if is_prime(&candidate) == false { 
@@ -123,7 +117,7 @@ impl Generator {
     /// ```
     pub fn new_uint(n: usize) -> BigUint {
         let mut rng = rand::thread_rng();
-        return rng.gen_biguint(n);
+        return rng.gen_biguint(n as u64);
     }
 
     /// # Generate Prime Number
@@ -149,7 +143,7 @@ impl Generator {
         
         loop {
             // Make mutable and set LSB and MSB
-            let candidate: BigUint = rng.gen_biguint(n);
+            let candidate: BigUint = rng.gen_biguint(n as u64);
             
             //candidate.set_bit(0, true);
             //candidate.set_bit((n-1) as u32, true);
@@ -174,7 +168,7 @@ impl Generator {
         let mut rng = rand::thread_rng();
         loop {
             // Make mutable and set LSB and MSB
-            let candidate: BigUint = rng.gen_biguint(n);
+            let candidate: BigUint = rng.gen_biguint(n as u64);
             //candidate.set_bit(0, true);
             //candidate.set_bit((n-1) as u32, true);
             if is_prime(&candidate) == true {
@@ -267,11 +261,11 @@ impl Factorization {
         // STEP 2 | 3..sqrt(n) | Divide i by n. On failure, add 2 to i
         let n_sqrt = n.sqrt().to_usize().unwrap();
         
-        for mut i in 3..n_sqrt {
+        for i in 3..n_sqrt {
             while n.divides(&BigUint::from(i)) {
                 n = n / BigUint::from(i);
             }
-            i = i + 2usize;
+            //i = i + 2usize;
         }
 
         // Step 3
@@ -367,7 +361,6 @@ fn miller_rabin(candidate: &BigUint, limit: usize) -> bool {
         else {
             // Convert To Usizes For Loop
             // step = (s - 1)
-            let one_usize = one.to_usize().unwrap();
             let zero_usize = zero.to_usize().unwrap();
             
             let mut break_early = false;
@@ -444,13 +437,11 @@ fn is_prime(candidate: &BigUint) -> bool {
     }
 
     // Finally, Miller-Rabin test
-    if miller_rabin(candidate, MILLER_RABIN_ROUNDS) == false {
-        return false
-    }
-    else {
-        return true
-    }
-    return true
+    return if miller_rabin(candidate, MILLER_RABIN_ROUNDS) == false {
+        false
+    } else {
+        true
+    };
 }
 
 // p = 2q + 1
@@ -465,12 +456,11 @@ fn is_safe_prime_add(number: &BigUint) -> bool {
     
     // p
     let p = x + one;
-    
-    if is_prime(&p) {
-        return true;
-    }
-    else {
-        return false;
+
+    return if is_prime(&p) {
+        true
+    } else {
+        false
     }
 }
 
@@ -509,25 +499,23 @@ fn vsn(m: &BigUint,n: f64, c: u32) -> bool {
     }
 }
 
-fn pollard_rho(mut n: BigUint) {
+/*fn pollard_rho(mut n: BigUint) {
     // Initialize Random Number Generator
-    let mut rng = rand::thread_rng();
-    
     // Set one and two
-    let zero: BigUint = Zero::zero();
+    // let zero: BigUint = Zero::zero();
     let one: BigUint = One::one();
-    let two: BigUint = &one + &one;
+    // let two: BigUint = &one + &one;
 
-    // x
+ /*   // x
     let x = &two;
     let mut y = &zero;
 
     let mut i: usize = 0usize;
-    let mut counter: usize = 10usize;
+    let mut counter: usize = 10usize;*/
     //let x = rng.gen_biguint_range(&zero,&(&two % (n - two));
 
 }
-
+*/
 
 #[cfg(test)]
 #[test]

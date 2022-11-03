@@ -7,10 +7,11 @@ edition = "2021"
 
 [dependencies]
 #rsa = "0.6.1"
-rand = "0.8"
-num-traits = "0.2.11"
+rand = "0.8.5"
+num-traits = "0.2.15"
 num = { version = "0.4.0", default-features = false }
-num-integer = "0.1"
-num-bigint = { version = "0.4", features = ["rand"] }
-base64 = "0.13.0"
-log = "0.4.14"
+num-integer = "0.1.45"
+num-bigint = { version = "0.4.3", features = ["rand", "serde"] }
+serde = { version = "1.0.147", features = ["derive"] }
+serde_json = {version = "1.0.87"}
+base64 = "0.13.1"

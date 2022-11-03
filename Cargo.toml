@@ -2,6 +2,13 @@
 name = "encrypto_rust"
 version = "0.1.0"
 edition = "2021"
+description = "stunning-encrypto is cross platform end-to-end encryption dependency."
+homepage = "https://zot.ssdd.dev/encrypto/"
+repository = "https://github.com/ssddcodes/stunning-encrypto/tree/rust"
+readme = "README.md"
+keywords = ["e2ee", "end to end encryption", "stunning encrypto", "encryption", "rust e2ee"]
+categories = ["cryptography"]
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

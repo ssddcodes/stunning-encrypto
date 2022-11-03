@@ -24,32 +24,49 @@ mod tests {
     }
 }
 
-#[derive(Debug, Default, Clone, Serialize)]
-struct PublicKey {
-    e: BigUint,
-    n: BigUint,
-}
-
+/// This struct is used to store your generated PrivateKey and PublicKeys, click for demo code
+///
+/// # Uses
+/// ```
+/// use encrypto_rust::Encrypto;
+///
+/// fn main() {
+///     let encrypto = Encrypto::init(1024);
+///     let public_key = encrypto.get_public_key(); //returns PublicKey struct
+///     let msg = "Alo".to_string(); // sample message to be encrypted
+///     let enc = Encrypto::encrypt_from_string(msg.clone(), public_key.clone()); // returns encrypted msg as base64 string
+///     let dec = encrypto.decrypt_as_string(enc); // returns decoded msg as string
+///
+///     let public_key_string = encrypto.sterilize_pub_key(); // IMPORTANT - returns base64 encoded public key which is to be sent to other client for encryption
+///
+///     let enc_from_bytes = Encrypto::encrypt_from_bytes(bytes, public_key); // returns encrypted bytes as base64 string
+///     let dec_from_bytes = encrypto.decrypt_as_bytes(enc_from_bytes); // returns bytes as Vec<u8>
+///
+///     assert_eq!(msg, dec);
+/// }
+/// ```
 #[derive(Debug, Default, Clone)]
-struct PrivateKey {
-    on: BigUint,
-    d: BigUint,
-}
-
-#[derive(Debug, Default, Clone)]
-struct Encrypto {
+pub struct Encrypto {
     pbl: PublicKey,
     pri: PrivateKey,
 }
 
-#[derive(Serialize, Deserialize, Default)]
-struct ForPub {
-    pe: BigUint,
+/// Struct to store public key
+#[derive(Debug, Default, Clone, Serialize)]
+pub struct PublicKey {
+    e: BigUint,
+    n: BigUint,
+}
+
+/// Struct to store private key
+#[derive(Debug, Default, Clone)]
+pub struct PrivateKey {
     on: BigUint,
+    d: BigUint,
 }
 
 impl Encrypto {
-    fn init(bit_len: usize) -> Self {
+    pub fn init(bit_len: usize) -> Self {
         let e = BigUint::from(65537 as u32);
         let e1 = e.clone();
         let p = Generator::new_prime(bit_len);
@@ -65,7 +82,6 @@ impl Encrypto {
         };
 
         let pri: PrivateKey = PrivateKey {
-            e: e1,
             on,
             d,
         };
@@ -76,20 +92,11 @@ impl Encrypto {
         }
     }
 
-    fn get_public_key(&self) -> PublicKey {
+    pub fn get_public_key(&self) -> PublicKey {
         self.pbl.clone()
     }
 
-    /*  fn get_public_key_string(&self) -> String {
-          /*let x = base64::decode(encode).unwrap();
-          let json;
-          unsafe {
-              json = json!(String::from_utf8_unchecked(x));
-          }*/
-          base64::encode(Strin)
-      }*/
-
-    fn desterilize_pub_key(encoded: &str) -> PublicKey {
+    pub fn desterilize_pub_key(encoded: &str) -> PublicKey {
         let x = base64::decode(encoded).unwrap();
         let json: Value = serde_json::from_slice(&*x).unwrap();
         let x = json.get("on").unwrap().as_str().unwrap();
@@ -105,7 +112,7 @@ impl Encrypto {
         }
     }
 
-    fn sterilize_pub_key(&self) -> String {
+    pub fn sterilize_pub_key(&self) -> String {
         let mut hm = HashMap::<&str, String>::new();
         hm.insert("pe", self.pbl.e.clone().to_string());
         hm.insert("on", self.pbl.n.clone().to_string());
@@ -113,16 +120,25 @@ impl Encrypto {
         base64::encode(json.as_bytes())
     }
 
-    fn encrypt(val: String, pub_key: PublicKey) -> String {
+    pub fn encrypt_from_string(val: String, pub_key: PublicKey) -> String {
         base64::encode(convert_bigint_to_bytes((convert_bytes_to_big_int(val.as_bytes()) * pub_key.e) % pub_key.n))
     }
 
-    fn decrypt_as_string(&self, val: String) -> String {
+    pub fn encrypt_from_bytes(bytes: &[u8], pub_key: PublicKey) -> String{
+        base64::encode(convert_bigint_to_bytes((convert_bytes_to_big_int(bytes) * pub_key.e) % pub_key.n))
+    }
+
+    pub fn decrypt_as_string(&self, val: String) -> String {
         String::from_utf8(convert_bigint_to_bytes((convert_bytes_to_big_int(&*base64::decode(val).unwrap()) * self.pri.d.clone()) % self.pri.on.clone())).unwrap()
+    }
+
+    pub fn decrypt_as_bytes(&self, val: String) -> Vec<u8> {
+        convert_bigint_to_bytes((convert_bytes_to_big_int(&*base64::decode(val).unwrap()) * self.pri.d.clone()) % self.pri.on.clone())
     }
 
 }
 
+/// Custom common method to convert Bytes to BigInteger
 fn convert_bytes_to_big_int(bytes: &[u8]) -> BigUint {
     let mut result = BigUint::zero();
     for z in bytes {
@@ -131,6 +147,7 @@ fn convert_bytes_to_big_int(bytes: &[u8]) -> BigUint {
     return result;
 }
 
+/// Custom common method to convert BigInteger to Bytes
 fn convert_bigint_to_bytes(mut number: BigUint) -> Vec<u8> {
     let bytes = (number.clone().bits() + 7) >> 3;
     let b256 = BigUint::from_i32(256).unwrap();
@@ -152,6 +169,7 @@ fn egcd(a: BigInt, b: BigInt) -> (BigInt, BigInt, BigInt) {
     }
 }
 
+/// Returns modulo inverse
 fn modinv(a: BigInt, m: BigInt) -> Option<BigUint> {
     let (g, x, _) = egcd(a, m.clone());
     if g != BigInt::one() {

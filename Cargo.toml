@@ -6,14 +6,11 @@ description = "stunning-encrypto is cross platform end-to-end encryption depende
 homepage = "https://zot.ssdd.dev/encrypto/"
 repository = "https://github.com/ssddcodes/stunning-encrypto/tree/rust"
 readme = "README.md"
-keywords = ["e2ee", "end to end encryption", "stunning encrypto", "encryption", "rust e2ee"]
+keywords = ["e2ee", "end-to-end-encryption", "stunning-encrypto", "encryption", "rust-e2ee"]
 categories = ["cryptography"]
 license = "MIT"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-#rsa = "0.6.1"
 rand = "0.8.5"
 num-traits = "0.2.15"
 num = { version = "0.4.0", default-features = false }
